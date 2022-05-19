@@ -1,6 +1,6 @@
 FROM fusuf/whatsasena:latest
 
-RUN git clone https://github.com/TOXIC-DEVIL/Leon /root/Leon
+RUN git clone https://github.com/TOXIC-DEVIL/Leon/tree/railway /root/Leon
 WORKDIR /root/Leon/
 ENV TZ=Europe/Istanbul
 RUN npm install supervisor -g
