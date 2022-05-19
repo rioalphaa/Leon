@@ -99,6 +99,7 @@
             "GETVAR_DESC": "Get heroku config var",
             "DELVAR_DESC": "Delete heroku config var",
             "ALLVAR_DESC": "Get all heroku config vars",
+            "ONLY_TF": "*You can only enter 'true' or 'false' along with this var!*",
             "DEL_SUCCESS": "```☑️ Successfully deleted``` *{}*",
             "NOT_FOUND": "```❌️ Couldn't find any key! Please enter a valid key to get value.```"           
         },
