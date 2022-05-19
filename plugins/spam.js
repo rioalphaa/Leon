@@ -26,9 +26,9 @@ if (Config.LANG == 'ID') SPAM_DESC = 'Spam teks yang dimasukkan atau dibalas.', 
 Leon.addCommand({pattern: 'spam ?(.*)', fromMe: true, desc: SPAM_DESC}, (async (message, match) => {
 
     if (match[1] === '' && (message.reply_message === false || message.reply_message.text === false)) return await message.sendReply(SPAM_NEED);
-    isSpamming = true
 
     if (spamming !== 'stop') {
+      isSpamming = true
       setInterval(async () => {
         var txt = message.reply_message ? message.reply_message.text : match[1]
         await message.client.sendMessage(message.jid, txt, MessageType.text);
