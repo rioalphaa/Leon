@@ -13,6 +13,7 @@ const heroku = new Heroku({
 let baseURI = '/apps/' + Config.HEROKU.APP_NAME;
 
 var isSpamming = false
+var spamming = 'start'
 
 var SPAM_DESC = 'Spams the entered or replied text.'
 var SSPAM_DESC = 'Stops the ongoing spam in chat.'
@@ -27,20 +28,19 @@ Leon.addCommand({pattern: 'spam ?(.*)', fromMe: true, desc: SPAM_DESC}, (async (
     if (match[1] === '' && (message.reply_message === false || message.reply_message.text === false)) return await message.sendReply(SPAM_NEED);
     isSpamming = true
 
-    setInterval(async () => {
-      var txt = message.reply_message ? message.reply_message.text : match[1]
-      await message.client.sendMessage(message.jid, txt, MessageType.text);
-    }, 1000)
+    if (spamming !== 'stop') {
+      setInterval(async () => {
+        var txt = message.reply_message ? message.reply_message.text : match[1]
+        await message.client.sendMessage(message.jid, txt, MessageType.text);
+      }, 1000)
+    }
 }));
 
 Leon.addCommand({pattern: 'killspam ?(.*)', fromMe: true, desc: SSPAM_DESC}, (async (message, match) => {
 
    if (isSpamming) {
      await message.sendReply(SPAM_STOPPED);
-     console.log(baseURI);
-         await heroku.delete(baseURI + '/dynos').catch(async (error) => {
-           await message.sendMessage(error.message);
-         });
+     spamming = 'stop'
    } else {
     await message.sendReply(NO_SPAM);
    }
