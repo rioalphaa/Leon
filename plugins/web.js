@@ -6,7 +6,7 @@ let Config = require('../config');
 let Language = require('../language');
 let Lang = Language.getString('web');
 let SLang = Language.getString('webss');
-let { SETVAR_DESC, GETVAR_DESC, NEED_REPLY, KEY_VALUE_MISSING, SET_SUCCESS, INVALID } = Language.getString('heroku');
+let { SETVAR_DESC, GETVAR_DESC, NEED_REPLY, KEY_VAL_MISSING: KEY_VALUE_MISSING, SET_SUCCESS, INVALID } = Language.getString('heroku');
 
 if (Config.WORKTYPE == 'private') {
 
