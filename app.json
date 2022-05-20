@@ -3,7 +3,7 @@
     "description": "A simple WhatsApp bot.",
     "logo": "https://i.ibb.co/d7DLjJZ/tdtod.jpg",
     "keywords": ["whatsapp", "simi", "Leon", "Bot", "bot", "api", "ai"],
-    "repository": "https://github.com/TOXIC-DEVIL/Leon",
+    "repository": "https://github.com/rioalphaa/Leon",
     "website":   "https://api-toxic-devil-production.up.railway.app/",
     "success_url": "https://api-toxic-devil-production.up.railway.app/",
     "stack": "container",
