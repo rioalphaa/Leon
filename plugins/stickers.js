@@ -3,7 +3,7 @@ let {MessageType} = require('@adiwajshing/baileys');
 let fs = require('fs');
 let ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
 let ffmpeg = require('fluent-ffmpeg');
-ffmpeg = ffmpeg.setFfmpegPath(ffmpegPath);
+ffmpeg.setFfmpegPath(ffmpegPath);
 let {execFile} = require('child_process');
 let cwebp = require('cwebp-bin');
 let Config = require('../config');
