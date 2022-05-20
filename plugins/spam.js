@@ -4,16 +4,8 @@ let fs = require('fs');
 let got = require('got');
 let Config = require('../config');
 let axios = require('axios');
-const Heroku = require('heroku-client');
-
-const heroku = new Heroku({
-    token: Config.HEROKU.API_KEY
-});
-
-let baseURI = '/apps/' + Config.HEROKU.APP_NAME;
 
 var isSpamming = false
-var spamming = 'start'
 
 var SPAM_DESC = 'Spams the entered or replied text.'
 var SSPAM_DESC = 'Stops the ongoing spam in chat.'
@@ -27,21 +19,18 @@ Leon.addCommand({pattern: 'spam ?(.*)', fromMe: true, desc: SPAM_DESC}, (async (
 
     if (match[1] === '' && (message.reply_message === false || message.reply_message.text === false)) return await message.sendReply(SPAM_NEED);
 
-    if (spamming !== 'stop') {
-      isSpamming = true
-      setInterval(async () => {
+      isSpamming = setInterval(async () => {
         var txt = message.reply_message ? message.reply_message.text : match[1]
         await message.client.sendMessage(message.jid, txt, MessageType.text);
       }, 1000)
-    }
 }));
 
 Leon.addCommand({pattern: 'killspam ?(.*)', fromMe: true, desc: SSPAM_DESC}, (async (message, match) => {
 
-   if (isSpamming) {
+   try {
+     clearInterval(isSpamming);
      await message.sendReply(SPAM_STOPPED);
-     spamming = 'stop'
-   } else {
+   } catch {
     await message.sendReply(NO_SPAM);
    }
 }));
